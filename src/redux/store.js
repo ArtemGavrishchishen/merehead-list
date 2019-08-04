@@ -3,11 +3,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
 import { usersReducer } from './users';
-import { currentPageReducer } from './currentPage';
+import { paginationReducer } from './pagination';
 
 const rootReducer = combineReducers({
   users: usersReducer,
-  currentPage: currentPageReducer,
+  pagination: paginationReducer,
 });
 
 const middlewares = applyMiddleware(thunk);

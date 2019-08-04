@@ -10,7 +10,11 @@ const getUsers = () => dispatch => {
   axios
     .get('/users')
     .then(({ data }) => {
-      dispatch(actions.fetchUsersSuccess(data.notes));
+      const users = {
+        data,
+        length: data.length,
+      };
+      dispatch(actions.fetchUsersSuccess(users));
     })
     .catch(error => dispatch(actions.fetchUsersError(error)));
 };

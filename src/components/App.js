@@ -1,7 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const App = () => {
-  return <div>App</div>;
+import { usersSelectors, usersOperations } from '../redux/users';
+import { paginationSelectors } from '../redux/pagination';
+import constants from '../configs/constants';
+
+import Users from './Users/Users';
+import Pagination from './Pagination/Pagination';
+
+class App extends Component {
+  componentDidMount() {
+    const { getUsers } = this.props;
+    getUsers();
+  }
+
+  getUsers = () => {
+    const { users, currentPage } = this.props;
+    const usersLength = constants.LIMIT_USERS;
+
+    const usersViev =
+      currentPage === 1
+        ? users.slice(0, usersLength)
+        : users.slice(
+            currentPage * usersLength - usersLength,
+            currentPage * usersLength,
+          );
+
+    return usersViev;
+  };
+
+  render() {
+    return (
+      <div>
+        <Users items={this.getUsers()} />
+        <Pagination />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  users: usersSelectors.getUsers(state),
+  currentPage: paginationSelectors.getCurrentPage(state),
+});
+
+const mapDispatchToProps = {
+  getUsers: usersOperations.getUsers,
 };
 
-export default App;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);

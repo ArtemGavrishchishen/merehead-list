@@ -1,4 +1,4 @@
-import types from './currentPageActionTypes';
+import types from './paginationActionTypes';
 
 const paginationPrev = () => ({
   type: types.PREVIOUS_PAGE,
