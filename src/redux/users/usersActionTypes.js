@@ -1,0 +1,9 @@
+const FETCH_REQUEST = 'users/FETCH_REQUEST';
+const FETCH_SUCCESS = 'users/FETCH_SUCCESS';
+const FETCH_ERROR = 'users/FETCH_ERROR';
+
+export default {
+  FETCH_REQUEST,
+  FETCH_SUCCESS,
+  FETCH_ERROR,
+};
