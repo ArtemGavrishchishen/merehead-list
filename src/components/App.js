@@ -8,6 +8,8 @@ import constants from '../configs/constants';
 import Users from './Users/Users';
 import Pagination from './Pagination/Pagination';
 
+import styles from './App.module.css';
+
 class App extends Component {
   componentDidMount() {
     const { getUsers } = this.props;
@@ -32,7 +34,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Users items={this.getUsers()} />
+        <div className={styles.users}>
+          <Users items={this.getUsers()} />
+        </div>
         <Pagination />
       </div>
     );
